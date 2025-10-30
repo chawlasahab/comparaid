@@ -1,0 +1,101 @@
+{% extends "layout.html" %}
+
+{% block title %}ComparAid - Compare Irish Grocery Prices{% endblock %}
+{% block description %}Find the best grocery deals across Tesco, SuperValu, Dunnes, Lidl, and Aldi. Compare prices instantly and save money on your weekly shop.{% endblock %}
+
+{% block content %}
+<section class="hero">
+    <div class="container">
+        <div class="hero-content">
+            <h1 class="hero-title">Find the Best Grocery Deals</h1>
+            <p class="hero-subtitle">Compare prices across Ireland's top supermarkets in seconds</p>
+            
+            <div class="search-container">
+                <form id="searchForm" class="search-form">
+                    <div class="search-input-group">
+                        <input type="text" 
+                               id="searchInput" 
+                               class="search-input" 
+                               placeholder="Search groceries (e.g., milk, bread, eggs)"
+                               autocomplete="off"
+                               required>
+                        <button type="submit" class="search-button" id="searchBtn">
+                            <span class="search-text">Compare Prices</span>
+                        </button>
+                    </div>
+                </form>
+                
+                <div class="popular-searches">
+                    <span class="popular-label">Popular:</span>
+                    <button class="popular-tag" data-term="milk">Milk</button>
+                    <button class="popular-tag" data-term="bread">Bread</button>
+                    <button class="popular-tag" data-term="eggs">Eggs</button>
+                    <button class="popular-tag" data-term="butter">Butter</button>
+                    <button class="popular-tag" data-term="chicken">Chicken</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="loading-section" id="loadingSection" style="display: none;">
+    <div class="container">
+        <div class="loading-content">
+            <div class="loading-spinner"></div>
+            <h3 class="loading-title">Fetching latest prices...</h3>
+            <p class="loading-subtitle">Comparing across all stores</p>
+        </div>
+    </div>
+</section>
+
+<section class="results-section" id="resultsSection" style="display: none;">
+    <div class="container">
+        <div class="results-header">
+            <h2 class="results-title" id="resultsTitle">Price Comparison Results</h2>
+            <div class="results-meta">
+                <span class="last-updated" id="lastUpdated"></span>
+            </div>
+        </div>
+        <div class="results-grid" id="resultsGrid"></div>
+    </div>
+</section>
+
+<section class="error-section" id="errorSection" style="display: none;">
+    <div class="container">
+        <div class="error-content">
+            <div class="error-icon">!</div>
+            <h3 class="error-title">Oops! Something went wrong</h3>
+            <p class="error-message" id="errorMessage"></p>
+            <button class="retry-button" onclick="location.reload()">Try Again</button>
+        </div>
+    </div>
+</section>
+
+<section class="stores-section">
+    <div class="container">
+        <h2 class="stores-title">We Compare Prices From</h2>
+        <div class="stores-grid">
+            <div class="store-card tesco">
+                <div class="store-logo">T</div>
+                <h3 class="store-name">Tesco</h3>
+            </div>
+            <div class="store-card supervalu">
+                <div class="store-logo">S</div>
+                <h3 class="store-name">SuperValu</h3>
+            </div>
+            <div class="store-card dunnes">
+                <div class="store-logo">D</div>
+                <h3 class="store-name">Dunnes</h3>
+            </div>
+            <div class="store-card lidl">
+                <div class="store-logo">L</div>
+                <h3 class="store-name">Lidl</h3>
+            </div>
+            <div class="store-card aldi">
+                <div class="store-logo">A</div>
+                <h3 class="store-name">Aldi</h3>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

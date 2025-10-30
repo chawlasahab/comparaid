@@ -1,0 +1,139 @@
+{% extends "layout.html" %}
+
+{% block title %}About - ComparAid{% endblock %}
+
+{% block content %}
+<div class="hero">
+    <div class="container">
+        <div class="hero-content">
+            <h1 class="hero-title">About ComparAid</h1>
+            <p class="hero-subtitle">Your trusted partner for smart grocery shopping in Ireland</p>
+        </div>
+    </div>
+</div>
+
+<section class="about-section">
+    <div class="container">
+        <div class="about-grid">
+            <div class="about-content">
+                <h2>Our Mission</h2>
+                <p>ComparAid was created to help Irish families save money on their weekly grocery shopping. We believe everyone deserves access to the best prices across all major supermarkets.</p>
+                
+                <h3>What We Do</h3>
+                <ul>
+                    <li>Compare prices across 5 major Irish supermarkets</li>
+                    <li>Update prices regularly to ensure accuracy</li>
+                    <li>Provide easy-to-use search and comparison tools</li>
+                    <li>Help you find the best deals in your area</li>
+                </ul>
+
+                <h3>How It Works</h3>
+                <ol>
+                    <li><strong>Search:</strong> Enter any grocery item you're looking for</li>
+                    <li><strong>Compare:</strong> See prices from all major stores instantly</li>
+                    <li><strong>Save:</strong> Choose the best deal and save money</li>
+                </ol>
+            </div>
+            
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-number">5</div>
+                    <div class="stat-label">Major Stores</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">1000+</div>
+                    <div class="stat-label">Products Tracked</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">€100+</div>
+                    <div class="stat-label">Average Annual Savings</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">24/7</div>
+                    <div class="stat-label">Price Monitoring</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<style>
+.about-section {
+    padding: 60px 0;
+}
+
+.about-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 60px;
+    align-items: start;
+}
+
+.about-content h2 {
+    font-size: 28px;
+    color: var(--primary-color);
+    margin-bottom: 16px;
+}
+
+.about-content h3 {
+    font-size: 20px;
+    color: var(--gray-800);
+    margin: 32px 0 16px;
+}
+
+.about-content p {
+    font-size: 16px;
+    line-height: 1.7;
+    color: var(--gray-600);
+    margin-bottom: 24px;
+}
+
+.about-content ul, .about-content ol {
+    margin-left: 20px;
+    margin-bottom: 24px;
+}
+
+.about-content li {
+    margin-bottom: 8px;
+    color: var(--gray-600);
+}
+
+.stats-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+.stat-card {
+    background: var(--white);
+    padding: 24px;
+    border-radius: var(--border-radius-lg);
+    text-align: center;
+    box-shadow: var(--shadow);
+}
+
+.stat-number {
+    font-size: 32px;
+    font-weight: 700;
+    color: var(--primary-color);
+    margin-bottom: 8px;
+}
+
+.stat-label {
+    font-size: 14px;
+    color: var(--gray-600);
+    font-weight: 500;
+}
+
+@media (max-width: 768px) {
+    .about-grid {
+        grid-template-columns: 1fr;
+        gap: 40px;
+    }
+    
+    .stats-grid {
+        grid-template-columns: 1fr;
+    }
+}
+</style>
+{% endblock %}

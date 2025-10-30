@@ -1,0 +1,199 @@
+{% extends "layout.html" %}
+
+{% block title %}Price Trends - ComparAid{% endblock %}
+
+{% block content %}
+<div class="hero">
+    <div class="container">
+        <div class="hero-content">
+            <h1 class="hero-title">Price Trends</h1>
+            <p class="hero-subtitle">Track price variations across popular grocery items</p>
+        </div>
+    </div>
+</div>
+
+<section class="trends-section">
+    <div class="container">
+        <div class="trends-grid">
+            {% for trend in trends_data %}
+            <div class="trend-card">
+                <div class="trend-header">
+                    <h3 class="trend-item">{{ trend.item }}</h3>
+                    <div class="trend-stores">{{ trend.stores }} stores</div>
+                </div>
+                
+                <div class="price-range">
+                    <div class="price-bar">
+                        <div class="price-fill" style="width: {{ ((trend.avg_price - trend.min_price) / (trend.max_price - trend.min_price) * 100) if trend.max_price != trend.min_price else 50 }}%"></div>
+                    </div>
+                    <div class="price-labels">
+                        <span class="min-price">€{{ "%.2f"|format(trend.min_price) }}</span>
+                        <span class="max-price">€{{ "%.2f"|format(trend.max_price) }}</span>
+                    </div>
+                </div>
+                
+                <div class="trend-stats">
+                    <div class="trend-stat">
+                        <div class="stat-label">Average Price</div>
+                        <div class="stat-value">€{{ "%.2f"|format(trend.avg_price) }}</div>
+                    </div>
+                    <div class="trend-stat">
+                        <div class="stat-label">Price Range</div>
+                        <div class="stat-value">€{{ "%.2f"|format(trend.max_price - trend.min_price) }}</div>
+                    </div>
+                </div>
+                
+                <button class="compare-button" onclick="searchProduct('{{ trend.item.lower() }}')">
+                    Compare Prices
+                </button>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<style>
+.trends-section {
+    padding: 60px 0;
+}
+
+.trends-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+}
+
+.trend-card {
+    background: var(--white);
+    border-radius: var(--border-radius-lg);
+    padding: 30px;
+    box-shadow: var(--shadow);
+    transition: var(--transition);
+}
+
+.trend-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-xl);
+}
+
+.trend-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 24px;
+}
+
+.trend-item {
+    font-size: 20px;
+    font-weight: 600;
+    color: var(--gray-800);
+}
+
+.trend-stores {
+    font-size: 14px;
+    color: var(--gray-500);
+    background: var(--gray-100);
+    padding: 4px 8px;
+    border-radius: 12px;
+}
+
+.price-range {
+    margin-bottom: 24px;
+}
+
+.price-bar {
+    height: 8px;
+    background: var(--gray-200);
+    border-radius: 4px;
+    position: relative;
+    margin-bottom: 8px;
+}
+
+.price-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--success-color), var(--primary-color));
+    border-radius: 4px;
+    transition: var(--transition);
+}
+
+.price-labels {
+    display: flex;
+    justify-content: space-between;
+    font-size: 14px;
+    color: var(--gray-600);
+}
+
+.min-price {
+    color: var(--success-color);
+    font-weight: 600;
+}
+
+.max-price {
+    color: var(--warning-color);
+    font-weight: 600;
+}
+
+.trend-stats {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    margin-bottom: 24px;
+}
+
+.trend-stat {
+    text-align: center;
+    padding: 16px;
+    background: var(--gray-50);
+    border-radius: var(--border-radius);
+}
+
+.stat-label {
+    font-size: 12px;
+    color: var(--gray-600);
+    text-transform: uppercase;
+    font-weight: 500;
+    margin-bottom: 4px;
+}
+
+.stat-value {
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--primary-color);
+}
+
+.compare-button {
+    width: 100%;
+    padding: 12px;
+    background: var(--primary-color);
+    color: var(--white);
+    border: none;
+    border-radius: var(--border-radius);
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.compare-button:hover {
+    background: var(--primary-dark);
+}
+
+@media (max-width: 768px) {
+    .trends-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .trend-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+    }
+}
+</style>
+
+<script>
+function searchProduct(item) {
+    window.location.href = '/?search=' + encodeURIComponent(item);
+}
+</script>
+{% endblock %}

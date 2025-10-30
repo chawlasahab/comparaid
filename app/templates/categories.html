@@ -1,0 +1,105 @@
+{% extends "layout.html" %}
+
+{% block title %}Categories - ComparAid{% endblock %}
+
+{% block content %}
+<div class="hero">
+    <div class="container">
+        <div class="hero-content">
+            <h1 class="hero-title">Shop by Category</h1>
+            <p class="hero-subtitle">Browse products by category to find the best deals</p>
+        </div>
+    </div>
+</div>
+
+<section class="categories-section">
+    <div class="container">
+        <div class="categories-grid">
+            {% for category in categories %}
+            <div class="category-card">
+                <div class="category-icon">{{ category['icon'] }}</div>
+                <h3 class="category-name">{{ category['name'] }}</h3>
+                <div class="category-items">
+                    {% for item in category['items'] %}
+                    <button class="category-item" onclick="searchProduct('{{ item }}')">{{ item.title() }}</button>
+                    {% endfor %}
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<style>
+.categories-section {
+    padding: 60px 0;
+}
+
+.categories-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+}
+
+.category-card {
+    background: var(--white);
+    border-radius: var(--border-radius-lg);
+    padding: 30px;
+    box-shadow: var(--shadow);
+    transition: var(--transition);
+    text-align: center;
+}
+
+.category-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-xl);
+}
+
+.category-icon {
+    font-size: 48px;
+    margin-bottom: 16px;
+}
+
+.category-name {
+    font-size: 20px;
+    font-weight: 600;
+    color: var(--gray-800);
+    margin-bottom: 20px;
+}
+
+.category-items {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    justify-content: center;
+}
+
+.category-item {
+    padding: 6px 12px;
+    background: var(--gray-100);
+    color: var(--gray-700);
+    border: none;
+    border-radius: 20px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.category-item:hover {
+    background: var(--primary-color);
+    color: var(--white);
+}
+
+@media (max-width: 768px) {
+    .categories-grid {
+        grid-template-columns: 1fr;
+    }
+}
+</style>
+
+<script>
+function searchProduct(item) {
+    window.location.href = '/?search=' + encodeURIComponent(item);
+}
+</script>
+{% endblock %}

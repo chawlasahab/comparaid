@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}ComparAid - Compare Irish Grocery Prices Instantly{% endblock %}</title>
+    <meta name="description" content="{% block description %}Compare grocery prices across Tesco, SuperValu, Dunnes, Lidl, and Aldi. Find the best deals on Irish groceries with real-time price comparison.{% endblock %}">
+    <meta property="og:title" content="ComparAid - Irish Grocery Price Comparison">
+    <meta property="og:description" content="Compare prices across 5 major Irish supermarkets and save money on groceries.">
+    <meta property="og:type" content="website">
+    <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='images/favicon.ico') }}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="{{ url_for('static', filename='css/style.css') }}" rel="stylesheet">
+</head>
+<body>
+    <header class="header" id="header">
+        <div class="container">
+            <a href="/" class="logo">
+                <span class="logo-icon">🛒</span>
+                <span class="logo-text">ComparAid</span>
+            </a>
+            <nav class="nav">
+                <div class="nav-menu">
+                    <a href="/" class="nav-link">Home</a>
+                    <a href="/categories" class="nav-link">Categories</a>
+                    <a href="/stores" class="nav-link">Stores</a>
+                    <a href="/trends" class="nav-link">Trends</a>
+                    <a href="/about" class="nav-link">About</a>
+                    <a href="/contact" class="nav-link">Contact</a>
+                </div>
+                <button class="mobile-menu-toggle" onclick="toggleMobileMenu()">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </nav>
+        </div>
+        <div class="mobile-menu" id="mobileMenu">
+            <a href="/" class="mobile-nav-link">Home</a>
+            <a href="/categories" class="mobile-nav-link">Categories</a>
+            <a href="/stores" class="mobile-nav-link">Stores</a>
+            <a href="/trends" class="mobile-nav-link">Trends</a>
+            <a href="/about" class="mobile-nav-link">About</a>
+            <a href="/contact" class="mobile-nav-link">Contact</a>
+        </div>
+    </header>
+
+    <main class="main">
+        {% block content %}{% endblock %}
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 ComparAid — Prices updated automatically every 2 days</p>
+            <p class="footer-note">Prices are updated automatically from public supermarket data. Data © respective stores.</p>
+            <p class="footer-legal">Compare prices across Tesco, SuperValu, Dunnes, Lidl & Aldi</p>
+        </div>
+    </footer>
+
+    <script src="{{ url_for('static', filename='js/app.js') }}"></script>
+</body>
+</html>
